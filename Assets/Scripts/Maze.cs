@@ -28,9 +28,13 @@ public class Maze : MonoBehaviour {
 
 		maze = new int[height, length];
 
-		start = new Coordinate(1, 1);
+        start = ScriptableObject.CreateInstance<Coordinate>();
+        start.x = 1;
+        start.y = 1;
 
-		finish = new Coordinate(length-1, height-1);
+		finish = ScriptableObject.CreateInstance<Coordinate>();
+        finish.x = length - 1;
+        finish.y = height - 1;
 		
 		mazeBlocks = new GameObject[height, length];
 
@@ -48,7 +52,9 @@ public class Maze : MonoBehaviour {
 		int x = start.x;
 		int y = start.y;
 
-		Coordinate coordinate = new Coordinate(x, y);
+        Coordinate coordinate = ScriptableObject.CreateInstance<Coordinate>();
+        coordinate.x = x;
+        coordinate.y = y;
 		visited.Push(coordinate);
 		int[] neighbors;
 		int count = 0;
@@ -84,25 +90,33 @@ public class Maze : MonoBehaviour {
 						if(choice == 0) {
 							maze[x, y-1] = 1;
 							maze[x, y-2] = 1;
-							coordinate = new Coordinate(x, y-2);
+							coordinate = ScriptableObject.CreateInstance<Coordinate>();
+                            coordinate.x = x;
+                            coordinate.y = y - 2;
 							visited.Push(coordinate);
 							y = y-2;
 						} else if (choice == 1) {
 							maze[x, y+1] = 1;
 							maze[x, y+2] = 1;
-							coordinate = new Coordinate(x, y+2);
+                            coordinate = ScriptableObject.CreateInstance<Coordinate>();
+                            coordinate.x = x;
+                            coordinate.y = y + 2;
 							visited.Push(coordinate);
 							y = y+2;
 						} else if (choice == 2) {
 							maze[x-1, y] = 1;
 							maze[x-2, y] = 1;
-							coordinate = new Coordinate(x-2, y);
+                            coordinate = ScriptableObject.CreateInstance<Coordinate>();
+                            coordinate.x = x - 2;
+                            coordinate.y = y;
 							visited.Push(coordinate);
 							x = x-2;
 						} else if(choice == 3) {
 							maze[x+1, y] = 1;
 							maze[x+2, y] = 1;
-							coordinate = new Coordinate(x+2, y);
+                            coordinate = ScriptableObject.CreateInstance<Coordinate>();
+                            coordinate.x = x + 2;
+                            coordinate.y = y;
 							visited.Push(coordinate);
 							x = x+2;
 						}
